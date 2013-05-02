@@ -1,26 +1,36 @@
+# == Class: git
+#
+# Manages git
+#
+# === Parameters:
+#
+# [*homedir*]
+#
+# Sets the users home directory.  Ignored if user => false. Default is
+# set to '/var/lib/git'
+#
+# [*manage_homedir*]
+#
+# Boolean that tells puppet whether it should manage the git users home
+# directory
+#
+# [*user*]
+#
+# Boolean that tells puppet to manage the git user. Default is false.
+#
+# [*username*]
+#
+# The username for the git user.  Default is 'git'
+#
 class git (
-  $create_user = false,
-  $user_home = '/var/lib/git',
-  $user_name = 'git',
-  $manage_user_home = true
+  $homedir = '/var/lib/git',
+  $manage_homedir = false,
+  $user = false,
+  $username = 'git'
 ) {
-  package { 'git': ensure => installed }
-  if $create_user {
-    user { $user_name:
-      ensure     => present,
-      home       => $user_home,
-      managehome => true,
-      before     => File[$user_home],
-    }
-    file { $user_home:
-      seltype => 'user_home_dir_t',
-    }
-    file { "${user_home}/.ssh":
-      ensure  => directory,
-      seltype => 'ssh_home_t',
-      require => File[$user_home],
-      owner   => $user_name,
-      group   => $user_name,
-    }
+  include git::package
+
+  if $user {
+    include git::user
   }
 }
