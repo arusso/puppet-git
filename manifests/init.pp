@@ -23,14 +23,30 @@
 # The username for the git user.  Default is 'git'
 #
 class git (
-  $homedir = '/var/lib/git',
-  $manage_homedir = false,
-  $user = false,
-  $username = 'git'
+  $homedir = 'UNSET',
+  $manage_homedir = 'UNSET',
+  $user = 'UNSET',
+  $username = 'UNSET',
+  $package = 'UNSET'
 ) {
-  include git::package
+  include git::params
 
-  if $user {
-    include git::user
+  $package_real = $package ? {
+    'UNSET' => $git::params::package,
+    default => any2bool($package),
+  }
+
+  $user_real = $user ? {
+    'UNSET' => $git::parmas::user,
+    default => any2bool($user),
+  }
+
+  if $package_real { include git::package }
+  if $user_real {
+    class { 'git::user':
+      homedir        => $homedir,
+      manage_homedir => $manage_homedir,
+      username       => $username,
+    }
   }
 }

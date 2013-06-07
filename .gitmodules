@@ -1,0 +1,3 @@
+[submodule "spec/fixtures/modules/oski"]
+	path = spec/fixtures/modules/oski
+	url = https://github.com/arusso/puppet-oski
