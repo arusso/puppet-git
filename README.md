@@ -1,5 +1,7 @@
 # Introduction
 
+[![Build Status](https://travis-ci.org/arusso/puppet-git.png?branch=master)](https://travis-ci.org/arusso/puppet-git)
+
 This is a simple git module that installs the git packages, and can be
 used to setup a git user account and homedir
 
