@@ -37,7 +37,7 @@ class git (
   }
 
   $user_real = $user ? {
-    'UNSET' => $git::parmas::user,
+    'UNSET' => $git::params::user,
     default => any2bool($user),
   }
 
