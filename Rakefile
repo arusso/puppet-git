@@ -8,6 +8,7 @@ exclude_paths = [
 begin
   require 'rspec/core/rake_task'
   require 'puppet-lint/tasks/puppet-lint'
+  require 'puppet-syntax/tasks/puppet-syntax'
   PuppetLint.configuration.ignore_paths = exclude_paths
   PuppetLint.configuration.send("disable_80chars")
   PuppetSyntax.exclude_paths = exclude_paths
