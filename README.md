@@ -19,3 +19,15 @@ class { 'git':
   username       => 'git', # this is the default
 }
 ```
+
+# License
+
+See LICENSE file
+
+# Copyright
+
+Copyright &copy; The Regents of the University of California
+
+# Supprt
+
+Please log tickets and issues at the [Projects site](https://github.com/aruso/puppet-git)
