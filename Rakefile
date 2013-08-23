@@ -6,14 +6,10 @@ exclude_paths = [
 ]
 
 begin
-  require 'puppetlabs_spec_helper/rake_tasks'
-
   require 'rspec/core/rake_task'
   require 'puppet-lint/tasks/puppet-lint'
-  require 'puppet-syntax/tasks/puppet-syntax'
   PuppetLint.configuration.ignore_paths = exclude_paths
   PuppetLint.configuration.send("disable_80chars")
-  PuppetSyntax.exclude_paths = exclude_paths
 rescue LoadError
   require 'rubygems'
   retry
@@ -24,4 +20,4 @@ RSpec::Core::RakeTask.new(:spec) do |t|
 end
 
 desc "Run lint, syntax and spec testing"
-task :default => [:lint,:syntax,:spec]
+task :default => [:lint,:spec]
